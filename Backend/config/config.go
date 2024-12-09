@@ -14,7 +14,7 @@ import (
 
 var Db *gorm.DB
 
-func init() {
+func InitDB() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Println("No .env file found, proceding with environment variables")
