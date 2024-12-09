@@ -12,7 +12,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var Db *gorm.DB
+var DB *gorm.DB
 
 func InitDB() {
 	err := godotenv.Load()
@@ -32,12 +32,13 @@ func InitDB() {
 		host, user, password, dbname, port)
 
 	//connect to database
-	DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
 
 	log.Println("Connected to database")
+	log.Printf("config.DB initialized: %v", DB != nil)
 
 	// auto-migrate the doc model
 
